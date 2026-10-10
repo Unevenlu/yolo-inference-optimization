@@ -22,6 +22,9 @@ runs/
 *.mp4
 *.avi
 
+# 测试图片
+bus.jpg
+
 # IDE / 系统
 .idea/
 .vscode/

@@ -16,10 +16,21 @@
 
 | 日期 | 模型 | 优化手段 | 大小 | 延迟 | mAP | 备注 |
 |------|------|----------|------|------|-----|------|
-| -    | -    | 基线     | -    | -    | -   | -    |
+| 2026-10-10 | yolo26n | 基线 (PyTorch) | 5.29MB | 38.6ms | - | [报告](benchmarks/001-baseline.md) |
+| 2026-10-10 | yolo26n | ONNX 导出 | 9.47MB | 20.7ms | - | 加速 1.86x |
+| 2026-10-10 | yolov8n | 基线 (PyTorch) | 6.25MB | 38.5ms | - | 对照组 |
+| 2026-10-10 | yolov8n | ONNX 导出 | 12.26MB | 28.6ms | - | 加速 1.35x |
 
 ## 环境
 
-- OS: Windows
-- Python: (待补充)
-- 推理引擎: (待补充)
+- CPU: 12th Gen Intel Core i7-1260P
+- OS: Windows 11
+- Python: 3.11.17（conda 环境 `yolo`）
+- torch 2.14.1+cpu / ultralytics 8.4.175 / onnxruntime 1.31.0
+
+## 快速开始
+
+```bash
+conda activate yolo
+python scripts/baseline.py
+```
