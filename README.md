@@ -20,17 +20,20 @@
 | 2026-10-10 | yolo26n | ONNX 导出 | 9.47MB | 20.7ms | - | 加速 1.86x |
 | 2026-10-10 | yolov8n | 基线 (PyTorch) | 6.25MB | 38.5ms | - | 对照组 |
 | 2026-10-10 | yolov8n | ONNX 导出 | 12.26MB | 28.6ms | - | 加速 1.35x |
+| 2026-10-10 | yolo26n | OpenVINO FP32 | 9.64MB | 23.1ms | - | [报告](benchmarks/002-openvino.md) |
+| 2026-10-10 | yolo26n | OpenVINO FP16 | 5.12MB | 20.3ms | - | 体积减半，e2e 较 PyTorch 提速 1.9x |
 
 ## 环境
 
 - CPU: 12th Gen Intel Core i7-1260P
 - OS: Windows 11
 - Python: 3.11.17（conda 环境 `yolo`）
-- torch 2.14.1+cpu / ultralytics 8.4.175 / onnxruntime 1.31.0
+- torch 2.14.1+cpu / ultralytics 8.4.175 / onnxruntime 1.31.0 / openvino 2026.4.1
 
 ## 快速开始
 
 ```bash
 conda activate yolo
-python scripts/baseline.py
+python scripts/baseline.py         # 实验 001: PyTorch / ONNX 基线
+python scripts/openvino_bench.py   # 实验 002: OpenVINO FP32/FP16 对比
 ```

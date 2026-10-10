@@ -1,6 +1,6 @@
 {
   "env": {
-    "date": "2026-10-10 16:39",
+    "date": "2026-10-10 17:08",
     "os": "Windows-10-10.0.26100-SP0",
     "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
     "python": "3.11.17",
@@ -17,17 +17,17 @@
       "pt_size_mb": 5.29,
       "params_m": 2.57,
       "latency": {
-        "e2e_ms": 48.55,
+        "e2e_ms": 1718.86,
         "preprocess_ms": 2.0,
-        "inference_ms": 38.57,
-        "postprocess_ms": 1.02
+        "inference_ms": 44.05,
+        "postprocess_ms": 0.96
       },
       "onnx_size_mb": 9.47,
       "latency_onnx": {
-        "e2e_ms": 36.91,
-        "preprocess_ms": 5.38,
-        "inference_ms": 20.74,
-        "postprocess_ms": 1.6
+        "e2e_ms": 35.93,
+        "preprocess_ms": 4.71,
+        "inference_ms": 20.21,
+        "postprocess_ms": 1.7
       }
     },
     {
@@ -35,17 +35,17 @@
       "pt_size_mb": 6.25,
       "params_m": 3.16,
       "latency": {
-        "e2e_ms": 46.88,
-        "preprocess_ms": 1.79,
-        "inference_ms": 38.47,
-        "postprocess_ms": 0.88
+        "e2e_ms": 49.51,
+        "preprocess_ms": 1.8,
+        "inference_ms": 40.25,
+        "postprocess_ms": 1.04
       },
       "onnx_size_mb": 12.26,
       "latency_onnx": {
-        "e2e_ms": 45.03,
-        "preprocess_ms": 5.76,
-        "inference_ms": 28.55,
-        "postprocess_ms": 2.3
+        "e2e_ms": 44.04,
+        "preprocess_ms": 4.49,
+        "inference_ms": 28.35,
+        "postprocess_ms": 1.6
       }
     }
   ]

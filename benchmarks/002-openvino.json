@@ -1,0 +1,49 @@
+{
+  "env": {
+    "date": "2026-10-10 17:15",
+    "os": "Windows-10-10.0.26100-SP0",
+    "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "python": "3.11.17",
+    "torch": "2.14.1+cpu",
+    "cuda_available": false,
+    "ultralytics": "8.4.175",
+    "imgsz": 640,
+    "warmup": 3,
+    "repeat": 10
+  },
+  "records": [
+    {
+      "engine": "ONNX Runtime (FP32)",
+      "artifact": "yolo26n.onnx",
+      "size_mb": 9.47,
+      "latency": {
+        "e2e_ms": 34.03,
+        "preprocess_ms": 3.93,
+        "inference_ms": 20.79,
+        "postprocess_ms": 1.46
+      }
+    },
+    {
+      "engine": "OpenVINO (FP32)",
+      "artifact": "yolo26n_openvino_model",
+      "size_mb": 9.64,
+      "latency": {
+        "e2e_ms": 31.42,
+        "preprocess_ms": 2.22,
+        "inference_ms": 23.14,
+        "postprocess_ms": 1.06
+      }
+    },
+    {
+      "engine": "OpenVINO (FP16)",
+      "artifact": "yolo26n_openvino_model",
+      "size_mb": 5.12,
+      "latency": {
+        "e2e_ms": 28.79,
+        "preprocess_ms": 2.36,
+        "inference_ms": 20.28,
+        "postprocess_ms": 0.97
+      }
+    }
+  ]
+}

@@ -15,6 +15,12 @@ venv/
 *.engine
 *.param
 *.bin
+*_openvino_model/
+*_openvino_fp*/
+
+# OpenVINO 中间文件
+*.xml
+*.mapping
 
 # 数据集与推理输出
 datasets/
