@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 模型与权重文件（体积大，不进 git，用 releases 或网盘管理）
+*.pt
+*.pth
+*.onnx
+*.engine
+*.param
+*.bin
+
+# 数据集与推理输出
+datasets/
+runs/
+*.mp4
+*.avi
+
+# IDE / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
