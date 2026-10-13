@@ -22,6 +22,7 @@
 | 2026-10-10 | yolov8n | ONNX 导出 | 12.26MB | 28.6ms | - | 加速 1.35x |
 | 2026-10-10 | yolo26n | OpenVINO FP32 | 9.64MB | 23.1ms | - | [报告](benchmarks/002-openvino.md) |
 | 2026-10-10 | yolo26n | OpenVINO FP16 | 5.12MB | 20.3ms | - | 体积减半，e2e 较 PyTorch 提速 1.9x |
+| 2026-10-13 | yolo26n | OpenVINO INT8 (NNCF) | 3.21MB | 33.0ms | 0.4685 | [报告](benchmarks/003-int8-quant.md)，mAP50-95 仅 -1.7 |
 
 ## 环境
 
@@ -34,6 +35,7 @@
 
 ```bash
 conda activate yolo
-python scripts/baseline.py         # 实验 001: PyTorch / ONNX 基线
-python scripts/openvino_bench.py   # 实验 002: OpenVINO FP32/FP16 对比
+python scripts/baseline.py           # 实验 001: PyTorch / ONNX 基线
+python scripts/openvino_bench.py     # 实验 002: OpenVINO FP32/FP16 对比
+python scripts/int8_quant_bench.py   # 实验 003: INT8 量化（含 mAP 验证）
 ```

@@ -1,0 +1,62 @@
+{
+  "env": {
+    "date": "2026-10-13 14:48",
+    "os": "Windows-10-10.0.26100-SP0",
+    "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "python": "3.11.17",
+    "torch": "2.14.1+cpu",
+    "cuda_available": false,
+    "ultralytics": "8.4.175",
+    "imgsz": 640,
+    "warmup": 3,
+    "repeat": 10,
+    "val_data": "coco128.yaml"
+  },
+  "records": [
+    {
+      "engine": "PyTorch (FP32)",
+      "artifact": "yolo26n.pt",
+      "size_mb": 5.29,
+      "latency": {
+        "e2e_ms": 54.18,
+        "preprocess_ms": 2.07,
+        "inference_ms": 42.81,
+        "postprocess_ms": 1.16
+      },
+      "accuracy": {
+        "map50_95": 0.4859,
+        "map50": 0.6475
+      }
+    },
+    {
+      "engine": "OpenVINO (FP16)",
+      "artifact": "yolo26n_openvino_model",
+      "size_mb": 5.12,
+      "latency": {
+        "e2e_ms": 50.92,
+        "preprocess_ms": 2.19,
+        "inference_ms": 41.49,
+        "postprocess_ms": 1.21
+      },
+      "accuracy": {
+        "map50_95": 0.4788,
+        "map50": 0.6432
+      }
+    },
+    {
+      "engine": "OpenVINO (INT8)",
+      "artifact": "yolo26n_int8_openvino_model",
+      "size_mb": 3.21,
+      "latency": {
+        "e2e_ms": 41.73,
+        "preprocess_ms": 2.32,
+        "inference_ms": 33.02,
+        "postprocess_ms": 0.95
+      },
+      "accuracy": {
+        "map50_95": 0.4685,
+        "map50": 0.6394
+      }
+    }
+  ]
+}
