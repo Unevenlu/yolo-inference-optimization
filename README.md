@@ -24,6 +24,7 @@
 | 2026-10-10 | yolo26n | OpenVINO FP16 | 5.12MB | 20.3ms | - | 体积减半，e2e 较 PyTorch 提速 1.9x |
 | 2026-10-13 | yolo26n | OpenVINO INT8 (NNCF) | 3.21MB | 33.0ms | 0.4685 | [报告](benchmarks/003-int8-quant.md)，mAP50-95 仅 -1.7 |
 | 2026-10-13 | yolov8n | 剪枝 30% + 微调 | 7.06MB | 34.9ms | 0.0002 | [报告](benchmarks/004-prune-finetune.md)，一次性剪枝致崩溃，小数据无法恢复 |
+| 2026-10-13 | yolov8n | 剪枝 30% + 1000图恢复 | 7.06MB | - | 0.0279 | [报告](benchmarks/005-prune-recovery-coco.md)，恢复成本≈重训，数据量提升140倍效果 |
 
 ## 环境
 
@@ -40,4 +41,5 @@ python scripts/baseline.py           # 实验 001: PyTorch / ONNX 基线
 python scripts/openvino_bench.py     # 实验 002: OpenVINO FP32/FP16 对比
 python scripts/int8_quant_bench.py   # 实验 003: INT8 量化（含 mAP 验证）
 python scripts/prune_finetune_bench.py  # 实验 004: 结构化剪枝 + 微调恢复
+python scripts/prune_recovery_coco.py   # 实验 005: 大数据量剪枝恢复（COCO 子集）
 ```

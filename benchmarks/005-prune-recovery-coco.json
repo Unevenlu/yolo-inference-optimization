@@ -1,0 +1,46 @@
+{
+  "env": {
+    "date": "2026-10-13 18:04",
+    "os": "Windows-10-10.0.26100-SP0",
+    "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "python": "3.11.17",
+    "torch": "2.14.1+cpu",
+    "cuda_available": false,
+    "ultralytics": "8.4.175",
+    "imgsz": 640,
+    "warmup": 3,
+    "repeat": 10,
+    "data": "COCO val2017 子集: 1000 训练 / 500 验证（互斥）",
+    "finetune_epochs": 10,
+    "note": "与实验 004 的唯一变量是训练数据量（96 → 1000）与验证口径（32 → 500）"
+  },
+  "records": [
+    {
+      "stage": "baseline",
+      "params_m": 3.16,
+      "gflops": 8.86,
+      "accuracy": {
+        "map50_95": 0.4169,
+        "map50": 0.566
+      }
+    },
+    {
+      "stage": "pruned",
+      "params_m": 1.81,
+      "gflops": 5.59,
+      "accuracy": {
+        "map50_95": 0.0,
+        "map50": 0.0
+      }
+    },
+    {
+      "stage": "pruned+recovered",
+      "params_m": 1.81,
+      "gflops": 5.59,
+      "accuracy": {
+        "map50_95": 0.0279,
+        "map50": 0.0519
+      }
+    }
+  ]
+}
