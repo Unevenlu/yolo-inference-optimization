@@ -1,0 +1,91 @@
+{
+  "env": {
+    "date": "2026-10-14 14:40",
+    "os": "Windows-10-10.0.26100-SP0",
+    "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "python": "3.11.17",
+    "torch": "2.14.1+cpu",
+    "cuda_available": false,
+    "ultralytics": "8.4.175",
+    "imgsz": 640,
+    "warmup": 3,
+    "repeat": 10,
+    "data": "COCO val2017 子集: 1000 训练 / 500 验证（互斥）",
+    "iterations": 3,
+    "per_step_ratio": 0.1121,
+    "target_total": 0.3,
+    "finetune_epochs_per_step": 10
+  },
+  "records": [
+    {
+      "stage": "baseline",
+      "params_m": 3.16,
+      "gflops": 8.86,
+      "accuracy": {
+        "map50_95": 0.4169,
+        "map50": 0.566
+      }
+    },
+    {
+      "stage": "iter1-pruned",
+      "params_m": 2.59,
+      "gflops": 7.45,
+      "accuracy": {
+        "map50_95": 0.0,
+        "map50": 0.0
+      }
+    },
+    {
+      "stage": "iter1-recovered",
+      "params_m": 2.59,
+      "gflops": 7.45,
+      "accuracy": {
+        "map50_95": 0.1163,
+        "map50": 0.1884
+      }
+    },
+    {
+      "stage": "iter2-pruned",
+      "params_m": 2.14,
+      "gflops": 6.31,
+      "accuracy": {
+        "map50_95": 0.0,
+        "map50": 0.0
+      }
+    },
+    {
+      "stage": "iter2-recovered",
+      "params_m": 2.14,
+      "gflops": 6.31,
+      "accuracy": {
+        "map50_95": 0.0873,
+        "map50": 0.1436
+      }
+    },
+    {
+      "stage": "iter3-pruned",
+      "params_m": 1.78,
+      "gflops": 5.42,
+      "accuracy": {
+        "map50_95": 0.0002,
+        "map50": 0.0003
+      }
+    },
+    {
+      "stage": "iter3-recovered",
+      "params_m": 1.78,
+      "gflops": 5.42,
+      "accuracy": {
+        "map50_95": 0.0734,
+        "map50": 0.1235
+      },
+      "latency": {
+        "e2e_ms": 55.84,
+        "preprocess_ms": 2.64,
+        "inference_ms": 42.72,
+        "postprocess_ms": 1.4
+      },
+      "size_mb": 6.93
+    }
+  ]
+}
