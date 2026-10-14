@@ -26,6 +26,7 @@
 | 2026-10-13 | yolov8n | 剪枝 30% + 微调 | 7.06MB | 34.9ms | 0.0002 | [报告](benchmarks/004-prune-finetune.md)，一次性剪枝致崩溃，小数据无法恢复 |
 | 2026-10-13 | yolov8n | 剪枝 30% + 1000图恢复 | 7.06MB | - | 0.0279 | [报告](benchmarks/005-prune-recovery-coco.md)，恢复成本≈重训，数据量提升140倍效果 |
 | 2026-10-14 | yolov8n | 迭代剪枝 3×11.2% | 6.93MB | 42.7ms | 0.0734 | [报告](benchmarks/006-iterative-prune.md)，等比对照优于一次性 2.6 倍 |
+| 2026-10-14 | yolov8n | 迭代剪枝 10×3.5% | 6.62MB | 36.3ms | 0.0683 | [报告](benchmarks/007-iterative-prune-10.md)，粒度不如总预算重要 |
 
 ## 环境
 

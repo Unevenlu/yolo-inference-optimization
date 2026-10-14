@@ -11,9 +11,12 @@
     - 迭代式 30%: 见本实验
 
 用法:
-    python scripts/iterative_prune_bench.py
+    python scripts/iterative_prune_bench.py                          # 默认 3 轮 ≈30%
+    python scripts/iterative_prune_bench.py -n 10 -e 5               # 10 轮细粒度（实验 007）
+    python scripts/iterative_prune_bench.py -n 10 -t 0.3 -e 5 --name 007-iterative-prune-10
 """
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -23,13 +26,11 @@ from ultralytics import YOLO
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import prune_finetune_bench as pfb  # noqa: E402
 from prune_finetune_bench import prune  # noqa: E402
-from prune_recovery_coco import ensure_data, evaluate, finetune  # noqa: E402
+import prune_recovery_coco as prc  # noqa: E402
+from prune_recovery_coco import ensure_data, evaluate  # noqa: E402
 from bench_utils import measure, collect_env, save_result  # noqa: E402
 
 WEIGHTS = "yolov8n.pt"
-TARGET_TOTAL = 0.30          # 累计目标剪枝率（与实验 004/005 等比）
-ITERATIONS = 3
-PER_STEP = 1 - (1 - TARGET_TOTAL) ** (1 / ITERATIONS)   # ≈ 0.112
 
 
 def snapshot(stage: str, model: YOLO) -> dict:
@@ -42,21 +43,33 @@ def snapshot(stage: str, model: YOLO) -> dict:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-n", "--iterations", type=int, default=3)
+    parser.add_argument("-t", "--target", type=float, default=0.30,
+                        help="累计目标剪枝率")
+    parser.add_argument("-e", "--epochs", type=int, default=10,
+                        help="每轮微调 epoch 数")
+    parser.add_argument("--name", default="006-iterative-prune")
+    args = parser.parse_args()
+
+    per_step = 1 - (1 - args.target) ** (1 / args.iterations)
     ensure_data()
-    print(f"迭代方案: {ITERATIONS} 轮 × 每轮 {PER_STEP:.1%}（累计≈{TARGET_TOTAL:.0%}）")
+    print(f"迭代方案: {args.iterations} 轮 × 每轮 {per_step:.1%}"
+          f"（累计≈{args.target:.0%}），每轮微调 {args.epochs} epoch")
     records = []
 
     model = YOLO(WEIGHTS)
     records.append(snapshot("baseline", model))
 
-    for i in range(ITERATIONS):
-        print(f"\n=== 第 {i + 1}/{ITERATIONS} 轮 ===")
-        pfb.CH_SPARSITY = PER_STEP
+    for i in range(args.iterations):
+        print(f"\n=== 第 {i + 1}/{args.iterations} 轮 ===")
+        pfb.CH_SPARSITY = per_step
         prune(model)
         records.append(snapshot(f"iter{i+1}-pruned", model))
 
-        print(f"  微调中 (10 epochs × 1000 张) ...")
-        finetune(model)
+        print(f"  微调中 ({args.epochs} epochs × 1000 张) ...")
+        prc.EPOCHS = args.epochs
+        prc.finetune(model)
         records.append(snapshot(f"iter{i+1}-recovered", model))
 
     # 终态：补延迟与大小
@@ -68,12 +81,12 @@ def main() -> None:
     env = collect_env()
     env.update({
         "data": "COCO val2017 子集: 1000 训练 / 500 验证（互斥）",
-        "iterations": ITERATIONS,
-        "per_step_ratio": round(PER_STEP, 4),
-        "target_total": TARGET_TOTAL,
-        "finetune_epochs_per_step": 10,
+        "iterations": args.iterations,
+        "per_step_ratio": round(per_step, 4),
+        "target_total": args.target,
+        "finetune_epochs_per_step": args.epochs,
     })
-    out = save_result("006-iterative-prune", env, records)
+    out = save_result(args.name, env, records)
 
     print(f"\n{'stage':<18} {'params(M)':>10} {'GFLOPs':>8} {'mAP50-95':>9} {'mAP50':>7}")
     for r in records:
