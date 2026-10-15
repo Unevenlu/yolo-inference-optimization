@@ -17,6 +17,7 @@ venv/
 *.bin
 *_openvino_model/
 *_openvino_fp*/
+*_ncnn_model/
 
 # OpenVINO 中间文件
 *.xml

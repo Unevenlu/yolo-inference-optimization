@@ -1,0 +1,32 @@
+{
+  "env": {
+    "date": "2026-10-15 09:33",
+    "os": "Windows-10-10.0.26100-SP0",
+    "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "python": "3.11.17",
+    "torch": "2.14.1+cpu",
+    "cuda_available": false,
+    "ultralytics": "8.4.175",
+    "imgsz": 640,
+    "warmup": 3,
+    "repeat": 10,
+    "note": "手写前后处理 + pyncnn；检测框与 ultralytics 封装逐框一致"
+  },
+  "records": {
+    "records": [
+      {
+        "engine": "NCNN (pyncnn) FP32",
+        "artifact_size_mb": 13.0,
+        "pure_inference_ms": 48.21,
+        "ultralytics_ncnn_e2e": {
+          "e2e_ms": 65.42,
+          "preprocess_ms": 2.16,
+          "inference_ms": 56.62,
+          "postprocess_ms": 1.0
+        },
+        "manual_detections": 5,
+        "reference_detections": 5
+      }
+    ]
+  }
+}

@@ -27,6 +27,7 @@
 | 2026-10-13 | yolov8n | 剪枝 30% + 1000图恢复 | 7.06MB | - | 0.0279 | [报告](benchmarks/005-prune-recovery-coco.md)，恢复成本≈重训，数据量提升140倍效果 |
 | 2026-10-14 | yolov8n | 迭代剪枝 3×11.2% | 6.93MB | 42.7ms | 0.0734 | [报告](benchmarks/006-iterative-prune.md)，等比对照优于一次性 2.6 倍 |
 | 2026-10-14 | yolov8n | 迭代剪枝 10×3.5% | 6.62MB | 36.3ms | 0.0683 | [报告](benchmarks/007-iterative-prune-10.md)，粒度不如总预算重要 |
+| 2026-10-15 | yolov8n | NCNN + 手写前后处理 | 13MB | 48.2ms | - | [报告](benchmarks/008-ncnn-manual.md)，与官方封装逐框一致 |
 
 ## 环境
 
@@ -44,5 +45,6 @@ python scripts/openvino_bench.py     # 实验 002: OpenVINO FP32/FP16 对比
 python scripts/int8_quant_bench.py   # 实验 003: INT8 量化（含 mAP 验证）
 python scripts/prune_finetune_bench.py  # 实验 004: 结构化剪枝 + 微调恢复
 python scripts/prune_recovery_coco.py   # 实验 005: 大数据量剪枝恢复（COCO 子集）
-python scripts/iterative_prune_bench.py # 实验 006: 迭代式剪枝（约3小时）
+python scripts/iterative_prune_bench.py # 实验 006/007: 迭代式剪枝
+python scripts/ncnn_manual_bench.py     # 实验 008: NCNN + 手写前后处理
 ```
